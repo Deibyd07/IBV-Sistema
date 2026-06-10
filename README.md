@@ -12,7 +12,7 @@ Plataforma web responsiva para gestionar el ciclo completo de **recepción, impr
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
-**[🌐 Ver demo en vivo →](https://nextcutagency.com)**
+**[🌐 Ver demo en vivo →](https://ibv-sistema.vercel.app)**
 
 </div>
 
@@ -233,8 +233,7 @@ Ejecutar desde la carpeta `frontend/`:
 
 | Entorno | URL |
 |---------|-----|
-| 🌐 Producción | https://nextcutagency.com |
-| ▲ Vercel | https://ibv-sistema.vercel.app |
+| 🌐 Producción (Vercel) | https://ibv-sistema.vercel.app |
 
 ---
 
