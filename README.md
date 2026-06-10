@@ -12,6 +12,8 @@ Plataforma web responsiva para gestionar el ciclo completo de **recepción, impr
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
+**[🌐 Ver demo en vivo →](https://nextcutagency.com)**
+
 </div>
 
 ---
@@ -28,6 +30,7 @@ Plataforma web responsiva para gestionar el ciclo completo de **recepción, impr
 - [Instalación](#-instalación)
 - [Variables de entorno](#-variables-de-entorno)
 - [Scripts disponibles](#-scripts-disponibles)
+- [Despliegues](#-despliegues)
 - [Despliegue](#-despliegue)
 - [Flujo de trabajo Git](#-flujo-de-trabajo-git)
 - [Licencia](#-licencia)
@@ -223,6 +226,15 @@ Ejecutar desde la carpeta `frontend/`:
 | `npm run format` | Formatea el código con Prettier |
 | `npm run type-check` | Verifica los tipos con TypeScript |
 | `npm run test` | Ejecuta las pruebas con Vitest |
+
+---
+
+## 🔗 Despliegues
+
+| Entorno | URL |
+|---------|-----|
+| 🌐 Producción | https://nextcutagency.com |
+| ▲ Vercel | https://ibv-sistema.vercel.app |
 
 ---
 
