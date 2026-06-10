@@ -1,113 +1,176 @@
-# Sistema IBV - Inventario y Despacho de Vehículos en Bodegas
+<div align="center">
 
-![Frontend CI](https://github.com/CamiloTriana75/Sistema-IBV/workflows/Frontend%20CI/badge.svg)
+# Sistema IBV
 
-Sistema web/responsivo para gestionar el ciclo completo de recepción, inventario, impronta y despacho de vehículos provenientes de buques hacia bodegas.
+### Inventario y Despacho de Vehículos en Bodegas
 
-## Descripción
+Plataforma web responsiva para gestionar el ciclo completo de **recepción, impronta, inventario y despacho** de vehículos provenientes de buques hacia bodegas portuarias.
 
-Sistema integral que permite controlar todo el flujo operativo de vehículos en bodegas portuarias: desde la recepción del buque, el registro e impronta de cada vehículo, la verificación de inventario, hasta el despacho condicionado y la generación de reportes.
+[![Frontend CI](https://github.com/Deibyd07/IBV-Sistema/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/Deibyd07/IBV-Sistema/actions/workflows/frontend-ci.yml)
+[![Nuxt](https://img.shields.io/badge/Nuxt-3-00DC82?logo=nuxtdotjs&logoColor=white)](https://nuxt.com)
+[![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs&logoColor=white)](https://vuejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
-## Funcionalidades principales
+</div>
 
-- **Escaneo QR** — Cámara de celular y pistola de escaneo
-- **Recepción de vehículos** — Registro desde buques con datos y QR
-- **Impronta** — Registro fotográfico y de datos por vehículo
-- **Inventario** — Checklist de verificación de equipamiento
-- **Despacho condicionado** — Solo si impronta e inventario están completos
-- **Gestión de roles** — Administrador, Portería, Recibidor, Inventario, Despachador, Cliente
-- **Reportes** — Estadísticas, exportación a Excel, recibos imprimibles
+---
 
-## Stack Tecnológico
+## 📑 Tabla de contenidos
 
-| Capa | Tecnología | Estado |
-|---|---|---|
-| **Frontend** | Vue 3 + Nuxt 3 + TypeScript | ✅ Implementado |
-| **Base de datos** | Supabase (PostgreSQL) | ✅ Implementado |
-| **Autenticación** | Supabase Auth | ✅ Implementado |
-| **Almacenamiento** | Supabase Storage | ✅ Implementado |
-| **Estilos** | TailwindCSS | ✅ Implementado |
-| **API** | Supabase (directo desde frontend) | ✅ Implementado |
+- [Descripción](#-descripción)
+- [Características](#-características)
+- [Arquitectura](#-arquitectura)
+- [Stack tecnológico](#-stack-tecnológico)
+- [Roles del sistema](#-roles-del-sistema)
+- [Estructura del proyecto](#-estructura-del-proyecto)
+- [Requisitos previos](#-requisitos-previos)
+- [Instalación](#-instalación)
+- [Variables de entorno](#-variables-de-entorno)
+- [Scripts disponibles](#-scripts-disponibles)
+- [Despliegue](#-despliegue)
+- [Integración continua](#-integración-continua)
+- [Flujo de trabajo Git](#-flujo-de-trabajo-git)
+- [Licencia](#-licencia)
 
-## Estructura del proyecto
+---
+
+## 📖 Descripción
+
+**Sistema IBV** controla todo el flujo operativo de vehículos en bodegas portuarias: desde la llegada del buque y el registro e impronta de cada vehículo, pasando por la verificación de inventario, hasta el **despacho condicionado** y la generación de reportes.
+
+El sistema garantiza la **trazabilidad de extremo a extremo**: un vehículo solo puede ser despachado cuando su impronta y su inventario están completos, eliminando errores manuales y dejando un registro auditable de cada operación.
+
+---
+
+## ✨ Características
+
+- **📷 Escaneo QR** — Compatible con cámara de dispositivos móviles y pistolas de escaneo.
+- **🚢 Recepción de vehículos** — Registro de vehículos desde buques, con datos y generación de QR.
+- **🖊️ Impronta** — Registro fotográfico y de datos por vehículo, con recibo imprimible.
+- **📋 Inventario** — Checklist de verificación de equipamiento y estado del vehículo.
+- **🚚 Despacho condicionado** — El despacho solo se habilita si impronta e inventario están completos.
+- **🔐 Gestión de roles** — Control de acceso por rol mediante middlewares y Row Level Security.
+- **🔔 Notificaciones** — Centro de notificaciones en la aplicación.
+- **📊 Reportes y estadísticas** — Dashboards con KPIs, exportación a Excel y recibos imprimibles.
+- **🧾 Auditoría** — Registro de actividades y excepciones operativas.
+
+---
+
+## 🏗️ Arquitectura
+
+El proyecto utiliza una arquitectura **serverless** basada en Supabase como Backend as a Service. El frontend Nuxt 3 se comunica directamente con Supabase mediante su SDK, sin un servidor intermedio que mantener.
+
+```
+┌──────────────┐
+│   Navegador  │
+│   (Nuxt 3)   │
+└──────┬───────┘
+       │  Supabase Client SDK (JWT)
+       ▼
+┌─────────────────────────────────┐
+│          Supabase Cloud         │
+├─────────────────────────────────┤
+│  • PostgreSQL  (base de datos)  │
+│  • Auth        (autenticación)  │
+│  • Storage     (archivos/fotos) │
+│  • Realtime    (WebSockets)     │
+│  • Row Level Security (RLS)     │
+└─────────────────────────────────┘
+```
+
+> 📚 Documentación detallada en [ARQUITECTURA.md](ARQUITECTURA.md) y la carpeta [docs/](docs/).
+
+---
+
+## 🛠️ Stack tecnológico
+
+| Capa | Tecnología |
+|------|------------|
+| **Framework** | Nuxt 3 + Vue 3 |
+| **Lenguaje** | TypeScript |
+| **Estilos** | TailwindCSS |
+| **Estado** | Pinia |
+| **Build** | Vite |
+| **Base de datos** | Supabase (PostgreSQL) |
+| **Autenticación** | Supabase Auth (JWT) |
+| **Almacenamiento** | Supabase Storage |
+| **Seguridad** | Row Level Security (RLS) |
+| **Testing** | Vitest |
+
+---
+
+## 👥 Roles del sistema
+
+| Rol | Acceso | Responsabilidad principal |
+|-----|--------|---------------------------|
+| **Administrador** | `/admin` | Gestión total: usuarios, roles, estadísticas, auditoría y excepciones |
+| **Portería** | `/porteria` | Registro de movimientos de entrada y salida |
+| **Recibidor** | `/recibidor` | Recepción de vehículos e improntas |
+| **Inventario** | `/inventario` | Checklist y verificación de equipamiento |
+| **Despachador** | `/despachador` | Escaneo, planillas y despacho de vehículos |
+| **Cliente** | — | Consulta de sus vehículos (solo lectura) |
+
+El rol se asigna automáticamente al iniciar sesión y se valida en cada ruta mediante middlewares y políticas RLS.
+
+---
+
+## 📂 Estructura del proyecto
 
 ```
 Sistema-IBV/
-├── frontend/          # Nuxt 3 + Vue 3 (Aplicación completa)
-│   ├── src/
-│   │   ├── components/      # Componentes Vue reutilizables
-│   │   ├── pages/           # Páginas/rutas (admin, porteria, etc.)
-│   │   ├── services/        # Servicios de Supabase (users, data, auth)
-│   │   ├── stores/          # Pinia stores (auth, stats)
-│   │   ├── middleware/      # Middlewares de ruta (auth, roles)
-│   │   └── plugins/         # Plugins (supabase client)
-├── scripts/           # Scripts de utilidad (setup Supabase)
-├── docs/              # Documentación del proyecto
-└── .github/           # Templates de GitHub (PR, Issues)
+├── frontend/                 # Aplicación Nuxt 3 + Vue 3
+│   └── src/
+│       ├── components/       # Componentes Vue (common, charts, admin, etc.)
+│       ├── pages/            # Rutas por rol (admin, porteria, recibidor, …)
+│       ├── layouts/          # Layouts (admin, default, blank)
+│       ├── services/         # Capa de servicios Supabase
+│       ├── stores/           # Pinia stores (auth, stats, inventario, …)
+│       ├── middleware/       # Guards de ruta por rol
+│       ├── composables/      # Composables (useQrScanner, …)
+│       ├── plugins/          # Cliente Supabase
+│       └── tests/            # Pruebas unitarias (Vitest)
+├── scripts/sql/              # Scripts SQL: modelo de BD y políticas RLS
+├── docs/                     # Documentación técnica y guías de Supabase
+├── .github/                  # Workflows de CI y plantilla de PR
+└── netlify.toml              # Configuración de despliegue en Netlify
 ```
 
-## Requisitos previos
+---
 
-- **Node.js:** 18+ (recomendado 20.x)
-- **npm** o **pnpm** o **yarn**
-- **Cuenta de Supabase** (gratuita)
-- **Git:** Para control de versiones
+## ✅ Requisitos previos
 
-## CI/CD Pipeline
+- **Node.js** 20.x (recomendado) o 18+
+- **npm** (incluido con Node.js)
+- Una cuenta de **Supabase** (el plan gratuito es suficiente)
+- **Git**
 
-Este proyecto tiene configurado GitHub Actions para integración continua.
+---
 
-### 🔄 Workflows Automáticos
-
-#### Frontend CI
-- **Trigger:** Push o PR a `develop` o `main` con cambios en `frontend/`
-- **Pasos:**
-  - ✅ Linting (ESLint)
-  - ✅ Formateo (Prettier)
-  - ✅ Type checking (TypeScript)
-  - ✅ Build del proyecto (Nuxt)
-  - ✅ Tests (si existen)
-- **Matrices:** Node.js 18.x y 20.x
-
-### 🛠️ Scripts de Pre-Commit
-
-Ejecuta verificaciones localmente antes de hacer commit:
-
-```bash
-# Frontend
-.\scripts\pre-commit-frontend.ps1
-```
-
-Ver documentación completa en [.github/README.md](.github/README.md)
-
-## Instalación
+## 🚀 Instalación
 
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/CamiloTriana75/Sistema-IBV.git
-cd Sistema-IBV
+git clone https://github.com/Deibyd07/IBV-Sistema.git
+cd IBV-Sistema
 ```
 
 ### 2. Configurar Supabase
 
-1. Crear un proyecto en [Supabase](https://supabase.com)
-2. Ejecutar el SQL de configuración:
-   - Ir a SQL Editor en Supabase Dashboard
-   - Copiar y ejecutar `scripts/sql/00_full_setup.sql`
-3. Obtener credenciales:
-   - **URL del proyecto**: Settings → API → Project URL
-   - **Anon key**: Settings → API → Project API keys → anon/public
+1. Crea un proyecto en [Supabase](https://supabase.com).
+2. En **SQL Editor**, ejecuta los scripts en este orden:
+   - `scripts/sql/00_MODELO_BD_COMPLETO.sql` — modelo de base de datos.
+   - `scripts/sql/00_POLITICAS_RLS_CREAR_TODAS.sql` — políticas de seguridad (RLS).
+   - `scripts/sql/05_recibidor_tables.sql` — tablas del módulo recibidor.
+3. Obtén las credenciales en **Settings → API**:
+   - **Project URL**
+   - **anon / public key**
 
 ### 3. Configurar variables de entorno
 
-Crear archivo `.env` en la raíz del proyecto:
-
-```bash
-# Supabase
-NUXT_PUBLIC_SUPABASE_URL=tu-url-de-supabase
-NUXT_PUBLIC_SUPABASE_ANON_KEY=tu-anon-key
-```
+Crea un archivo `frontend/.env` (ver [Variables de entorno](#-variables-de-entorno)).
 
 ### 4. Instalar dependencias y ejecutar
 
@@ -117,191 +180,110 @@ npm install
 npm run dev
 ```
 
-La aplicación estará disponible en [http://localhost:3000](http://localhost:3000)
+La aplicación quedará disponible en **http://localhost:3000**.
 
-### 5. Usuarios por defecto
+### 5. Crear usuarios
 
-Al hacer login por primera vez con estos correos, se crean automáticamente en la base de datos:
+En Supabase, ve a **Authentication → Users → Add user** y crea las cuentas. Al iniciar sesión por primera vez, el rol se asigna automáticamente según el correo:
 
-| Email | Rol | Contraseña |
-|---|---|---|
-| admin1@ibv.com | Administrador | (configurar en Supabase Auth) |
-| porteria1@ibv.com | Portería | (configurar en Supabase Auth) |
-| recibidor1@ibv.com | Recibidor | (configurar en Supabase Auth) |
-| inventario1@ibv.com | Inventario | (configurar en Supabase Auth) |
-| despacho1@ibv.com | Despachador | (configurar en Supabase Auth) |
+| Email | Rol |
+|-------|-----|
+| `admin1@ibv.com` | Administrador |
+| `porteria1@ibv.com` | Portería |
+| `recibidor1@ibv.com` | Recibidor |
+| `inventario1@ibv.com` | Inventario |
+| `despacho1@ibv.com` | Despachador |
 
-**Crear usuarios en Supabase:**
-1. Ir a Authentication → Users
-2. Click en "Add user"
-3. Ingresar email y contraseña
-4. El rol se asigna automáticamente al hacer login
+---
 
-## Despliegue
+## 🔑 Variables de entorno
 
-### Vercel (Recomendado para Nuxt)
+Crea `frontend/.env` con las siguientes claves:
 
-1. Conectar repositorio GitHub con Vercel
-2. Configurar variables de entorno (Supabase URL y Key)
-3. Deploy automático en cada push a `main`
+```bash
+# Supabase
+NUXT_PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
+NUXT_PUBLIC_SUPABASE_ANON_KEY=tu-anon-key
+```
+
+> ⚠️ El archivo `.env` está incluido en `.gitignore` y **nunca debe subirse al repositorio**.
+
+---
+
+## 📜 Scripts disponibles
+
+Ejecutar desde la carpeta `frontend/`:
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Inicia el servidor de desarrollo |
+| `npm run build` | Compila la aplicación para producción |
+| `npm run preview` | Previsualiza el build de producción |
+| `npm run generate` | Genera el sitio estático |
+| `npm run lint` | Analiza el código con ESLint |
+| `npm run lint:fix` | Corrige automáticamente errores de lint |
+| `npm run format` | Formatea el código con Prettier |
+| `npm run type-check` | Verifica los tipos con TypeScript |
+| `npm run test` | Ejecuta las pruebas con Vitest |
+
+---
+
+## ☁️ Despliegue
 
 ### Netlify
 
-1. Conectar repositorio GitHub con Netlify
-2. Netlify detecta automáticamente `netlify.toml` (ya incluido en la raíz)
-3. Configurar variables de entorno en Netlify:
-   - `NUXT_PUBLIC_SUPABASE_URL`
-   - `NUXT_PUBLIC_SUPABASE_ANON_KEY`
-4. Deploy automático en cada push a `main`
+1. Conecta el repositorio con Netlify.
+2. Netlify detecta automáticamente [netlify.toml](netlify.toml).
+3. Configura las variables `NUXT_PUBLIC_SUPABASE_URL` y `NUXT_PUBLIC_SUPABASE_ANON_KEY`.
+4. Despliegue automático en cada push a `main`.
 
-## Equipo
+### Vercel
 
-| Rol | Enfoque |
-|---|---|
-| Dev 1 — Frontend Lead | Vue, Nuxt, UI/UX, componentes QR |
-| Dev 2 — Fullstack | Supabase, integraciones, lógica de negocio |
-| Dev 3 — Fullstack | Reportes, módulos secundarios, testing |
+1. Importa el repositorio en Vercel (preset Nuxt).
+2. Define el directorio raíz como `frontend/`.
+3. Configura las mismas variables de entorno.
+4. Despliegue automático en cada push a `main`.
 
-## Metodología
+---
 
-Scrum — Sprints de 2 semanas
+## 🔄 Integración continua
 
-## Estrategia de Ramas (Git Branching)
+El repositorio incluye un workflow de **GitHub Actions** ([frontend-ci.yml](.github/workflows/frontend-ci.yml)) que se ejecuta en cada push o pull request hacia `main` y `develop` que afecte a `frontend/`:
 
-Este proyecto utiliza una estrategia basada en **Git Flow simplificado** para mantener un desarrollo ordenado y colaborativo.
+1. ✅ Lint (ESLint)
+2. ✅ Type check (TypeScript)
+3. ✅ Build (Nuxt)
 
-### Ramas Principales
+---
 
-| Rama | Propósito | Protección |
-|---|---|---|
-| `main` | Código en producción, siempre estable | ✅ Protegida |
-| `develop` | Rama de desarrollo principal, integración continua | ✅ Protegida |
+## 🌿 Flujo de trabajo Git
 
-### Ramas de Trabajo
+El proyecto sigue un **Git Flow simplificado**.
 
-#### Features (Nuevas funcionalidades)
-```
-feature/<nombre-descriptivo>
-```
-**Ejemplos:**
-- `feature/qr-scanner`
-- `feature/vehicle-reception`
-- `feature/inventory-checklist`
+| Rama | Propósito |
+|------|-----------|
+| `main` | Código en producción, siempre estable |
+| `develop` | Integración de desarrollo |
+| `feature/*` | Nuevas funcionalidades (parten de `develop`) |
+| `bugfix/*` | Correcciones (parten de `develop`) |
+| `hotfix/*` | Correcciones urgentes (parten de `main`) |
 
-**Flujo:**
-1. Crear desde `develop`
-2. Desarrollar la funcionalidad
-3. Pull Request hacia `develop`
-4. Code review y merge
+Se utilizan [Conventional Commits](https://www.conventionalcommits.org/):
 
-#### Bugfixes (Correcciones)
-```
-bugfix/<descripcion-del-bug>
-```
-**Ejemplos:**
-- `bugfix/login-validation`
-- `bugfix/qr-scan-crash`
-
-**Flujo:**
-1. Crear desde `develop`
-2. Corregir el bug
-3. Pull Request hacia `develop`
-
-#### Hotfixes (Correcciones urgentes en producción)
-```
-hotfix/<descripcion-urgente>
-```
-**Ejemplos:**
-- `hotfix/security-patch`
-- `hotfix/critical-dispatch-error`
-
-**Flujo:**
-1. Crear desde `main`
-2. Corregir el problema
-3. Pull Request hacia `main` **y** `develop`
-
-#### Refactor (Mejoras de código sin cambiar funcionalidad)
-```
-refactor/<componente-o-modulo>
-```
-**Ejemplos:**
-- `refactor/auth-service`
-- `refactor/database-queries`
-
-### Convenciones de Commits
-
-Seguimos **Conventional Commits** para mensajes claros:
-
-```
-<tipo>(<scope>): <descripción corta>
-
-[cuerpo opcional]
-[footer opcional]
-```
-
-**Tipos:**
-- `feat`: Nueva funcionalidad
-- `fix`: Corrección de bug
-- `docs`: Cambios en documentación
-- `style`: Formato, espacios (sin cambios de código)
-- `refactor`: Refactorización de código
-- `test`: Agregar o modificar tests
-- `chore`: Tareas de mantenimiento
-
-**Ejemplos:**
 ```
 feat(qr): agregar scanner de códigos QR
 fix(login): corregir validación de credenciales
 docs(readme): actualizar instrucciones de instalación
-refactor(api): mejorar estructura de servicios
 ```
 
-### Flujo de Trabajo
+---
 
-1. **Crear rama desde `develop`:**
-   ```bash
-   git checkout develop
-   git pull origin develop
-   git checkout -b feature/mi-funcionalidad
-   ```
-
-2. **Desarrollar y commitear:**
-   ```bash
-   git add .
-   git commit -m "feat(modulo): descripción del cambio"
-   ```
-
-3. **Mantener actualizado con `develop`:**
-   ```bash
-   git checkout develop
-   git pull origin develop
-   git checkout feature/mi-funcionalidad
-   git merge develop
-   ```
-
-4. **Push y crear Pull Request:**
-   ```bash
-   git push origin feature/mi-funcionalidad
-   ```
-   - Crear PR en GitHub hacia `develop`
-   - Completar el template de PR
-   - Solicitar code review
-
-5. **Después del merge, eliminar rama:**
-   ```bash
-   git checkout develop
-   git pull origin develop
-   git branch -d feature/mi-funcionalidad
-   ```
-
-### Releases
-
-Para publicar a producción:
-1. Crear PR de `develop` → `main`
-2. Revisión final del equipo
-3. Merge a `main`
-4. Tag de versión: `git tag -a v1.0.0 -m "Release 1.0.0"`
-
-## Licencia
+## 📄 Licencia
 
 Privado — Todos los derechos reservados.
+
+<div align="center">
+
+**Sistema IBV** · Hecho con Nuxt 3 + Supabase
+
+</div>
