@@ -1,0 +1,255 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import './variables.css';
+
+/* ── Fuentes ── */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* ── Base ── */
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  background-color: #0b0e14;
+  color: theme('colors.zinc.100');
+  font-family: 'Archivo', system-ui, sans-serif;
+  /* Controles nativos (selects, date pickers, scrollbars) en oscuro */
+  color-scheme: dark;
+}
+
+/* ── Tipografía global ── */
+h1,
+h2,
+h3,
+h4 {
+  @apply leading-tight;
+}
+
+p {
+  @apply leading-relaxed;
+}
+
+a {
+  @apply transition-colors duration-200;
+}
+
+/* ── Utilidades de tipografía IBV ── */
+.font-display {
+  font-family: 'Archivo Black', 'Archivo', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.font-data {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* ── Identidad industrial (lenguaje de la landing) ── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.hazard {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(251, 191, 36, 0.55) 0,
+    rgba(251, 191, 36, 0.55) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+  color: transparent;
+}
+
+@keyframes ibv-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.animate-blink {
+  animation: ibv-blink 1.6s ease-in-out infinite;
+}
+
+/* Kicker de sección: etiqueta mono sobre títulos */
+.ibv-kicker {
+  @apply font-data text-[10px] uppercase tracking-[0.25em] text-zinc-500;
+}
+
+/* Título de sección estilo landing */
+.ibv-section-title {
+  font-family: 'Archivo Black', 'Archivo', system-ui, sans-serif;
+  font-weight: 400;
+  @apply uppercase tracking-tight text-zinc-100;
+}
+
+/* ── Inputs oscuros globales (páginas autenticadas) ── */
+.ibv-input {
+  @apply w-full px-4 py-2.5 border border-white/10 rounded-md text-sm text-zinc-100
+         bg-white/[0.03] placeholder:text-zinc-600
+         focus:outline-none focus:border-amber-400/70 focus:bg-white/[0.05]
+         transition-all disabled:opacity-40 disabled:cursor-not-allowed;
+}
+
+.ibv-select {
+  @apply w-full px-4 py-2.5 border border-white/10 rounded-md text-sm text-zinc-100
+         bg-[#10141c]
+         focus:outline-none focus:border-amber-400/70
+         transition-all disabled:opacity-40 disabled:cursor-not-allowed;
+}
+
+.ibv-textarea {
+  @apply w-full px-4 py-2.5 border border-white/10 rounded-md text-sm text-zinc-100
+         bg-white/[0.03] placeholder:text-zinc-600 resize-none
+         focus:outline-none focus:border-amber-400/70 focus:bg-white/[0.05]
+         transition-all disabled:opacity-40 disabled:cursor-not-allowed;
+}
+
+/* ── Tarjeta base ── */
+.ibv-card {
+  @apply rounded-lg border border-white/[0.08] bg-[#10141c] overflow-hidden;
+}
+
+/* ── Badge de estado ── */
+.ibv-badge {
+  @apply inline-flex items-center font-data text-[10px] uppercase tracking-[0.15em]
+         px-2 py-0.5 rounded-sm border;
+}
+
+.ibv-badge-amber {
+  @apply ibv-badge text-amber-300 border-amber-400/40 bg-amber-400/10;
+}
+
+.ibv-badge-emerald {
+  @apply ibv-badge text-emerald-300 border-emerald-400/40 bg-emerald-400/10;
+}
+
+.ibv-badge-sky {
+  @apply ibv-badge text-sky-300 border-sky-400/40 bg-sky-400/10;
+}
+
+.ibv-badge-red {
+  @apply ibv-badge text-red-300 border-red-400/40 bg-red-400/10;
+}
+
+.ibv-badge-zinc {
+  @apply ibv-badge text-zinc-400 border-zinc-500/40 bg-zinc-500/10;
+}
+
+.ibv-badge-orange {
+  @apply ibv-badge text-orange-300 border-orange-400/40 bg-orange-400/10;
+}
+
+/* ── Tabla oscura ── */
+.ibv-table {
+  @apply w-full text-sm;
+}
+
+.ibv-table thead {
+  @apply border-b border-white/[0.08];
+}
+
+.ibv-table thead th {
+  @apply font-data text-[10px] uppercase tracking-[0.2em] text-zinc-500
+         px-4 py-3 text-left font-medium;
+}
+
+.ibv-table tbody tr {
+  @apply border-b border-white/[0.05] hover:bg-white/[0.02] transition-colors;
+}
+
+.ibv-table tbody td {
+  @apply px-4 py-3 text-zinc-300;
+}
+
+/* ── Base oscura para TODOS los controles de formulario ──
+   :where() da especificidad cero: cualquier clase utility la sobreescribe. */
+:where(input:not([type='checkbox'], [type='radio'], [type='file'], [type='range'], [type='color'])),
+:where(select),
+:where(textarea) {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: theme('colors.zinc.100');
+}
+
+:where(input, textarea)::placeholder {
+  color: theme('colors.zinc.600');
+}
+
+select option {
+  background-color: #0d111a;
+  color: theme('colors.zinc.100');
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  accent-color: theme('colors.amber.400');
+}
+
+/* Autofill de Chrome: evitar el relleno blanco/amarillo */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #0d111a inset;
+  -webkit-text-fill-color: theme('colors.zinc.100');
+  caret-color: theme('colors.zinc.100');
+}
+
+/* Inputs sin clases (markup simple) reciben el estilo completo */
+input:not([class]),
+select:not([class]),
+textarea:not([class]) {
+  @apply w-full px-4 py-2.5 border border-white/10 rounded-md text-sm
+         focus:outline-none focus:border-amber-400/70
+         transition-all;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  @apply opacity-40 cursor-not-allowed;
+}
+
+button {
+  @apply transition-all duration-200;
+}
+
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d111a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(251, 191, 36, 0.3);
+}
+
+/* ── Selección de texto ── */
+::selection {
+  background-color: theme('colors.amber.400');
+  color: #000;
+}

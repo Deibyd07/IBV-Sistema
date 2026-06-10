@@ -1,0 +1,65 @@
+Requerimientos
+-escanear codigos Qr de salida de vehiculos 
+-bin 
+-Crear modulo de improntas para improntar bin de cada vehiculo por medio de QR
+-desembarque se necesita escanear el qr  que carga 
+-generacion de recibos e informacion del vehiculo
+-
+
+
+
+Ruta de  Usuarios
+-escanear o digitar identificacion del barco
+-escanear el vehiculo al recibir el buque o al recibir en la bodega
+-toma de improntas (cargar la informacion de los vehiculos para matricular)
+-inventario: verificacion de la equipacion l vehiculo
+-EL DESPACHO ES CONDICIONADO POR LA IMPRONTA Y EL INVENTARIO DEL VEHICULO
+-El despacho se genera a  la hora de verificacion 
+-modulo de ingreso de personal 
+- administrador
+-porteria
+	-ingreso de vehiculos y persona
+-recibidor
+	-encargado de recibir  los vehiculos de los barcos y el encargado de cargar la informacion
+-inventario
+	-verificador de que los implementos de los vehiculos  esten completo
+-	
+-despachador
+	-confirma que la impronta este correcta y el inventario este correcto
+-	-generacion de planillas con informacion general
+	-despache con opciones de vehiculos
+	
+-cliente
+
+
+
+
+
+se escanera un vehiculo para cargar la informacion y esto se hara para confirmar su salida en el momento de escaner se debera cargar informacion de impronta 
+
+posible scanear con camara del celular y con pistolas de scnear tipo supermercado
+
+
+la salida sera por orden de escaneo,en el momento de escanear se cargara la informacion de los carros que tenga 
+hecha la impronta y el ionventario del vehiculo,  
+se iniciara un proceso de escaneo se digitara la cantidad de vehiculos que van a salir y se escanearan 
+
+
+
+adjuntar info de impronta mediante una foto(con posibilidad de scaneo) (registro)
+El inventario y la impronta se deben imprimir
+
+
+estadisticas generales de toda la informacion
+
+generacion de reportes de excel
+
+
+
+
+SE CARGARA INFORMACION DE LOS MODELOS PRE-ESTABLECIDOS  DE LOS VEHICULOS EN LA bASE DE DATOS
+
+
+
+
+
