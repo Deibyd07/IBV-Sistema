@@ -6,7 +6,6 @@
 
 Plataforma web responsiva para gestionar el ciclo completo de **recepción, impronta, inventario y despacho** de vehículos provenientes de buques hacia bodegas portuarias.
 
-[![Frontend CI](https://github.com/Deibyd07/IBV-Sistema/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/Deibyd07/IBV-Sistema/actions/workflows/frontend-ci.yml)
 [![Nuxt](https://img.shields.io/badge/Nuxt-3-00DC82?logo=nuxtdotjs&logoColor=white)](https://nuxt.com)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs&logoColor=white)](https://vuejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -30,7 +29,6 @@ Plataforma web responsiva para gestionar el ciclo completo de **recepción, impr
 - [Variables de entorno](#-variables-de-entorno)
 - [Scripts disponibles](#-scripts-disponibles)
 - [Despliegue](#-despliegue)
-- [Integración continua](#-integración-continua)
 - [Flujo de trabajo Git](#-flujo-de-trabajo-git)
 - [Licencia](#-licencia)
 
@@ -243,16 +241,6 @@ Ejecutar desde la carpeta `frontend/`:
 2. Define el directorio raíz como `frontend/`.
 3. Configura las mismas variables de entorno.
 4. Despliegue automático en cada push a `main`.
-
----
-
-## 🔄 Integración continua
-
-El repositorio incluye un workflow de **GitHub Actions** ([frontend-ci.yml](.github/workflows/frontend-ci.yml)) que se ejecuta en cada push o pull request hacia `main` y `develop` que afecte a `frontend/`:
-
-1. ✅ Lint (ESLint)
-2. ✅ Type check (TypeScript)
-3. ✅ Build (Nuxt)
 
 ---
 
